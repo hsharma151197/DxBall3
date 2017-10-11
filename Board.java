@@ -24,9 +24,9 @@ public class Board extends JPanel implements Constants {
 	public Board() {
 		setSize(FRAME_WIDTH, FRAME_HEIGHT);
 		bgImage();		
-		gameLoop();
 		bar = new Bar();
 		tile = new Tiles();
+		gameLoop();
 		setFocusable(true); //use of setFocusable?
 	}
 	
@@ -46,6 +46,8 @@ public class Board extends JPanel implements Constants {
 		super.paintComponent(g);
 		drawBGImage(g);
 		bar.drawRect(g);
+		tile.formTiles();
 		tile.drawTiles(g);
+		bar.bindEvents();
 	}
 }
