@@ -7,6 +7,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+import game.ball.Ball;
 import game.bar.Bar;
 import game.constants.Constants;
 import game.tiles.Tiles;
@@ -16,6 +17,7 @@ public class Board extends JPanel implements Constants {
 	private Timer timer;
 	private Bar bar;
 	private Tiles tile;
+	private Ball ball;
 	
 	private void bgImage() {
 		bgImage = new ImageIcon(Board.class.getResource("bgImage.jpg")).getImage();
@@ -26,13 +28,19 @@ public class Board extends JPanel implements Constants {
 		bgImage();		
 		bar = new Bar();
 		tile = new Tiles();
+		ball = new Ball();
+		bar.bindEvents();
 		gameLoop();
-		setFocusable(true); //use of setFocusable?
+		//setDoubleBuffered(true);
+		//setFocusable(true); //use of setFocusable - To focus on JPanel
 	}
 	
 	private void gameLoop() {
 		timer = new Timer(DELAY,(e)-> {
+			bar.move();
+			ball.moveBall();
 			repaint();
+			
 		});
 		timer.start();
 	}
@@ -48,6 +56,7 @@ public class Board extends JPanel implements Constants {
 		bar.drawRect(g);
 		tile.formTiles();
 		tile.drawTiles(g);
-		bar.bindEvents();
+		ball.formBall(g);
+			
 	}
 }
