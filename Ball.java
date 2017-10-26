@@ -25,13 +25,14 @@ public class Ball implements Constants {
 	}
 	
 	public void changeDirection() {
+		
 		if(yBall >= FRAME_HEIGHT-48) {
 			ySpeed = -ySpeed;
 		}
 		if(xBall >= FRAME_WIDTH-50) {
 			xSpeed = -xSpeed;
 		}
-		if(yBall <= 180) {
+		if(yBall <= 0) {
 			ySpeed = -ySpeed;
 		}
 		if(xBall <= 0) {
@@ -47,10 +48,8 @@ public class Ball implements Constants {
 	
 	
 	public Ball() {
-		xrSpeed = new GameUtils(10);
-		yrSpeed = new GameUtils(10);
-		xSpeed = xrSpeed.getRandomNumber();
-		ySpeed = yrSpeed.getRandomNumber();
+		xSpeed = 10;
+		ySpeed = 10;
 	}
 
 	public int getxBall() {
@@ -68,4 +67,21 @@ public class Ball implements Constants {
 	public void setyBall(int yBall) {
 		this.yBall = yBall;
 	}
+
+	public int getxSpeed() {
+		return xSpeed;
+	}
+
+	public void setxSpeed(int xSpeed) {
+		this.xSpeed = xSpeed;
+	}
+
+	public int getySpeed() {
+		return ySpeed;
+	}
+
+	public void setySpeed(int ySpeed) {
+		this.ySpeed = ySpeed;
+	}
+
 }
